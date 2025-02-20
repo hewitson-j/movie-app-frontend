@@ -4,3 +4,19 @@
   width: 50%;
   min-width: 300px;
 }
+
+.title-h1 {
+  font-size: 24pt;
+}
+
+.title-h2 {
+  font-size: 20pt;
+}
+
+.title-h3 {
+  font-size: 16pt;
+}
+
+.title-h4 {
+  font-size: 12pt;
+}

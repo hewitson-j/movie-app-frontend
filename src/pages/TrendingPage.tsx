@@ -1,3 +1,9 @@
+import Title from "../components/Title";
+
 export default function TrendingPage() {
-  return <div className="trending-page page">This is the trending page</div>;
+  return (
+    <div className="trending-page page">
+      <Title size="h2">What's Trending</Title>
+    </div>
+  );
 }
