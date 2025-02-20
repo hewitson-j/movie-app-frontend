@@ -1,12 +1,24 @@
+.navbar {
+  color: white;
+  background-color: #032541;
+}
+
 .navbar ul {
   display: flex;
   flex-direction: row;
   justify-content: start;
   list-style: none;
-  padding: 0 0.5rem;
+  padding: 0 1rem;
+  margin: 0;
 }
 
 .navbar ul li {
-  padding: 0.5rem;
+  padding: 1rem;
   font-size: 16pt;
+  transition-duration: 0.2s;
+}
+
+.navbar ul li:hover {
+  background-color: #094576;
+  cursor: pointer;
 }

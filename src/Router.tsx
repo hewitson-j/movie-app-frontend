@@ -1,14 +1,14 @@
 import { Route, Routes } from "react-router-dom";
-import HomePage from "./pages/HomePage";
-import TrendingPage from "./pages/TrendingPage";
-import SearchPage from "./pages/SearchPage";
+import Home from "./pages/Home";
+import Trending from "./pages/Trending";
+import Search from "./pages/Search";
 
 export default function Router() {
   return (
     <Routes>
-      <Route path="/" element={<HomePage />} />
-      <Route path="/trending" element={<TrendingPage />} />
-      <Route path="/search" element={<SearchPage />} />
+      <Route path="/" element={<Home />} />
+      <Route path="/trending" element={<Trending />} />
+      <Route path="/search" element={<Search />} />
     </Routes>
   );
 }
