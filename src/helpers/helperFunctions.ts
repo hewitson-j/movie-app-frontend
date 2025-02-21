@@ -22,9 +22,13 @@ export function getById({ id, type }: GetByIdParams) {
 
 interface SearchMovieByTitleParams {
   title: string;
+  type: "movie" | "tv";
 }
 
-export function searchMovieByTitle({ title }: SearchMovieByTitleParams) {
+export function searchMovieByTitle({
+  title,
+  type = "movie",
+}: SearchMovieByTitleParams) {
   title = encodeURI(title);
-  return axios.get(`${BASE_URL}/search?title=${title}`);
+  return axios.get(`${BASE_URL}/search/${type}?title=${title}`);
 }

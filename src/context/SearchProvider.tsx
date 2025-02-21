@@ -18,22 +18,32 @@ interface SearchContextProps {
   loading: boolean;
   error: boolean;
   setSearchTerm: Dispatch<SetStateAction<string>> | (() => void);
+  setType: Dispatch<SetStateAction<"movie" | "tv">> | (() => void);
+  type: "movie" | "tv";
 }
 
 const SearchContext = createContext<SearchContextProps>({
   data: [],
   loading: true,
   error: false,
+  type: "movie",
   setSearchTerm: () => null,
+  setType: () => null,
 });
 
 export default function SearchProvider({ children }: SearchProviderProps) {
   const [searchTerm, setSearchTerm] = useState("");
+  const [type, setType] = useState<"movie" | "tv">("movie");
 
-  const { data, loading, error } = useSearchMovie({ title: searchTerm });
+  const { data, loading, error } = useSearchMovie({
+    title: searchTerm,
+    type: type,
+  });
 
   return (
-    <SearchContext.Provider value={{ data, loading, error, setSearchTerm }}>
+    <SearchContext.Provider
+      value={{ data, loading, error, setSearchTerm, type, setType }}
+    >
       {children}
     </SearchContext.Provider>
   );

@@ -16,7 +16,8 @@ export default function Search() {
 }
 
 function SearchPage() {
-  const { data, loading, error, setSearchTerm } = useSearchProviderContext();
+  const { data, loading, error, setSearchTerm, setType, type } =
+    useSearchProviderContext();
 
   const [searchText, setSearchText] = useState("");
   const [hasSearched, setHasSearched] = useState(false);
@@ -25,29 +26,48 @@ function SearchPage() {
     <div className="search-page page">
       <Title size="h2">Search</Title>
       <p>Use the below form to search for a movie!</p>
-      <div className="search-box">
-        <input
-          type="text"
-          placeholder="Search term here"
-          value={searchText}
-          onChange={(e) => setSearchText(e.target.value)}
-          onKeyDown={(e) => {
-            if (e.key === "Enter" && !loading) {
+      <form>
+        <div className="search-toggle-section">
+          <h3>Search by:</h3>
+          <div className="search-mode-buttons">
+            <button
+              disabled={type === "movie"}
+              onClick={() => setType("movie")}
+            >
+              Movie
+            </button>
+            <button disabled={type === "tv"} onClick={() => setType("tv")}>
+              TV Show
+            </button>
+          </div>
+        </div>
+        <div className="search-box">
+          <input
+            type="text"
+            placeholder={`Search by ${
+              type === "movie" ? "movie" : "tv show"
+            } title here`}
+            value={searchText}
+            onChange={(e) => setSearchText(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" && !loading) {
+                setSearchTerm(searchText);
+                if (!hasSearched) setHasSearched(true);
+              }
+            }}
+          />
+          <button
+            disabled={loading}
+            onClick={() => {
               setSearchTerm(searchText);
               if (!hasSearched) setHasSearched(true);
-            }
-          }}
-        />
-        <button
-          disabled={loading}
-          onClick={() => {
-            setSearchTerm(searchText);
-            if (!hasSearched) setHasSearched(true);
-          }}
-        >
-          Search
-        </button>
-      </div>
+            }}
+          >
+            Search
+          </button>
+        </div>
+      </form>
+
       {loading ? (
         <LoadingScreen />
       ) : (

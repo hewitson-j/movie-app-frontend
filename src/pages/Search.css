@@ -27,3 +27,15 @@
 .search-results-placeholder {
   margin: 2rem auto;
 }
+
+.search-mode-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  width: 300px;
+  margin: auto;
+}
+
+.search-toggle-section {
+  margin: 1rem auto;
+}

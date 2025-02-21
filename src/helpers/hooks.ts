@@ -32,8 +32,9 @@ export function useGetTrending({
 
 interface useSearchMovieParams {
   title: string;
+  type: "movie" | "tv";
 }
-export function useSearchMovie({ title }: useSearchMovieParams) {
+export function useSearchMovie({ title, type }: useSearchMovieParams) {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
@@ -41,7 +42,7 @@ export function useSearchMovie({ title }: useSearchMovieParams) {
   useEffect(() => {
     if (title.trim() !== "") {
       setLoading(true);
-      searchMovieByTitle({ title: title })
+      searchMovieByTitle({ title, type })
         .then((res) => {
           setData(res.data.results);
           setLoading(false);
@@ -51,7 +52,7 @@ export function useSearchMovie({ title }: useSearchMovieParams) {
           setLoading(false);
         });
     }
-  }, [title]);
+  }, [title, type]);
 
   return { data, loading, error };
 }

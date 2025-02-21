@@ -23,7 +23,15 @@ export default function MoviePoster({
       className="movie-poster"
       onClick={() => navigate(`/${type}/details/${id}`)}
     >
-      <img src={`https://image.tmdb.org/t/p/w200/${posterPath}`} />
+      <img
+        src={
+          posterPath
+            ? `https://image.tmdb.org/t/p/w200/${posterPath}`
+            : "Default.png"
+        }
+        width={"200px"}
+        alt={title}
+      />
       <h2>{title}</h2>
       <p>{overview}</p>
     </div>
