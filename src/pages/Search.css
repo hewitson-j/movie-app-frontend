@@ -39,3 +39,11 @@
 .search-toggle-section {
   margin: 1rem auto;
 }
+
+.search-result-nav-buttons {
+  width: 300px;
+  justify-content: space-evenly;
+  display: flex;
+  flex-direction: row;
+  margin: auto;
+}

@@ -17,8 +17,17 @@ export default function Search() {
 }
 
 function SearchPage() {
-  const { data, loading, error, setSearchTerm, setType, type } =
-    useSearchProviderContext();
+  const {
+    data,
+    loading,
+    error,
+    setSearchTerm,
+    setType,
+    type,
+    setSafePage,
+    totalResults,
+    page,
+  } = useSearchProviderContext();
 
   const [searchText, setSearchText] = useState("");
   const [hasSearched, setHasSearched] = useState(false);
@@ -75,20 +84,38 @@ function SearchPage() {
       ) : (
         <div className="search-results">
           {data && data?.length > 0 ? (
-            <div className="search-results-body">
-              {data.map((entry) => {
-                return (
-                  <MoviePoster
-                    key={entry.id}
-                    id={entry.id}
-                    posterPath={entry.poster_path}
-                    title={entry.title}
-                    overview={entry.overview}
-                    type="movie"
-                  />
-                );
-              })}
-            </div>
+            <>
+              <div className="search-results-body">
+                {data.map((entry) => {
+                  return (
+                    <MoviePoster
+                      key={entry.id}
+                      id={entry.id}
+                      posterPath={entry.poster_path}
+                      title={entry.title}
+                      overview={entry.overview}
+                      type="movie"
+                    />
+                  );
+                })}
+              </div>
+              {data.length < totalResults && (
+                <div className="search-result-nav-buttons">
+                  <button
+                    disabled={page === 1}
+                    onClick={() => setSafePage(page - 1)}
+                  >
+                    Prev
+                  </button>
+                  <button
+                    disabled={page * 20 > totalResults}
+                    onClick={() => setSafePage(page + 1)}
+                  >
+                    Next
+                  </button>
+                </div>
+              )}
+            </>
           ) : (
             <h2 className="search-results-placeholder">
               {hasSearched

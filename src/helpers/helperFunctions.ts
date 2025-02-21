@@ -20,15 +20,17 @@ export function getById({ id, type }: GetByIdParams) {
   return axios.get(`${BASE_URL}/search/${type}/${id}`);
 }
 
-interface SearchMovieByTitleParams {
+interface SearchByTitleParams {
   title: string;
   type: "movie" | "tv";
+  page: number;
 }
 
-export function searchMovieByTitle({
+export function searchByTitle({
   title,
   type = "movie",
-}: SearchMovieByTitleParams) {
+  page = 1,
+}: SearchByTitleParams) {
   title = encodeURI(title);
-  return axios.get(`${BASE_URL}/search/${type}?title=${title}`);
+  return axios.get(`${BASE_URL}/search/${type}?title=${title}&page=${page}`);
 }

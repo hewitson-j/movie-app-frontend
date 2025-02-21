@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getTrending, searchMovieByTitle } from "./helperFunctions";
+import { getTrending, searchByTitle } from "./helperFunctions";
 
 interface useGetTrendingParams {
   type?: "movie" | "tv";
@@ -30,29 +30,37 @@ export function useGetTrending({
   return { data, loading, error };
 }
 
-interface useSearchMovieParams {
+interface useSearchByTitleParams {
   title: string;
   type: "movie" | "tv";
+  page: number;
 }
-export function useSearchMovie({ title, type }: useSearchMovieParams) {
+export function useSearchByTitle({
+  title,
+  type,
+  page,
+}: useSearchByTitleParams) {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
+  const [totalResults, setTotalResults] = useState<number>();
+
   useEffect(() => {
     if (title.trim() !== "") {
       setLoading(true);
-      searchMovieByTitle({ title, type })
+      searchByTitle({ title, type, page })
         .then((res) => {
           setData(res.data.results);
           setLoading(false);
+          setTotalResults(res.data.total_results);
         })
         .catch(() => {
           setError(true);
           setLoading(false);
         });
     }
-  }, [title, type]);
+  }, [page, title, type]);
 
-  return { data, loading, error };
+  return { data, loading, error, totalResults };
 }
