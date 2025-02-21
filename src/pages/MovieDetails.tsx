@@ -5,6 +5,7 @@ import Title from "../components/Title";
 import { Movie, Show } from "../helpers/Types";
 import "./MovieDetails.css";
 import LoadingScreen from "../components/LoadingScreen";
+import ErrorScreen from "../components/ErrorScreen";
 
 export default function MovieDetails() {
   const { type, id } = useParams();
@@ -74,7 +75,17 @@ export default function MovieDetails() {
           </div>
         </>
       )}
-      {error ? <>Error!</> : <></>}
+      {error ? (
+        <ErrorScreen
+          customTitle={`Error loading ${
+            type === "movie" ? "Movie" : "TV Show"
+          }`}
+          customMessage="We're sorry! It looks like the material you're looking for is unavailable or there was an error displaying the information. Click the button below to go back."
+          showButton
+        />
+      ) : (
+        <></>
+      )}
     </div>
   );
 }

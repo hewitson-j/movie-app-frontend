@@ -6,6 +6,7 @@ import SearchProvider, {
 import MoviePoster from "../components/MoviePoster";
 import "./Search.css";
 import LoadingScreen from "../components/LoadingScreen";
+import ErrorScreen from "../components/ErrorScreen";
 
 export default function Search() {
   return (
@@ -43,6 +44,7 @@ function SearchPage() {
         </div>
         <div className="search-box">
           <input
+            disabled={error}
             type="text"
             placeholder={`Search by ${
               type === "movie" ? "movie" : "tv show"
@@ -57,7 +59,7 @@ function SearchPage() {
             }}
           />
           <button
-            disabled={loading}
+            disabled={loading || error}
             onClick={() => {
               setSearchTerm(searchText);
               if (!hasSearched) setHasSearched(true);
@@ -96,7 +98,15 @@ function SearchPage() {
           )}
         </div>
       )}
-      {error ? <>Error!</> : <></>}
+      {error ? (
+        <ErrorScreen
+          customTitle="Error Searching"
+          customMessage="It looks like we're having a hard time running your search. Please refresh the page or come back later."
+          showButton={false}
+        />
+      ) : (
+        <></>
+      )}
     </div>
   );
 }

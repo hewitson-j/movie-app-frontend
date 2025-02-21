@@ -1,3 +1,4 @@
+import ErrorScreen from "../components/ErrorScreen";
 import LoadingScreen from "../components/LoadingScreen";
 import MoviePoster from "../components/MoviePoster";
 import Title from "../components/Title";
@@ -61,7 +62,15 @@ function TrendingPage() {
           </div>
         </>
       )}
-      {error ? <>Error!</> : <></>}
+      {error ? (
+        <ErrorScreen
+          customPath="/"
+          customTitle="Failed to get trending movies."
+          customMessage="Sorry! It looks live we're having issues getting trending movies. Please try refreshing the page or come back later."
+        />
+      ) : (
+        <></>
+      )}
     </div>
   );
 }

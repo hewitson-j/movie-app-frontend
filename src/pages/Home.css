@@ -11,3 +11,10 @@
   flex-wrap: wrap;
   margin: auto;
 }
+
+.home-page-title {
+  width: 50%;
+  max-width: 800px;
+  min-width: 300px;
+  margin: auto;
+}
