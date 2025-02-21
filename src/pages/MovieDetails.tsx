@@ -1,25 +1,25 @@
 import { useNavigate, useParams } from "react-router-dom";
-import { getMovieById } from "../helpers/helperFunctions";
+import { getById } from "../helpers/helperFunctions";
 import { useEffect, useState } from "react";
 import Title from "../components/Title";
-import { Movie } from "../helpers/Types";
+import { Movie, Show } from "../helpers/Types";
 import "./MovieDetails.css";
 import LoadingScreen from "../components/LoadingScreen";
 
 export default function MovieDetails() {
-  const { id } = useParams();
+  const { type, id } = useParams();
 
-  const [movieData, setMovieData] = useState<Movie>();
+  const [movieData, setMovieData] = useState<Movie | Show>();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
   useEffect(() => {
-    if (!id) {
+    if (!id || !type || (type !== "movie" && type !== "tv")) {
       setError(true);
       return;
     }
 
-    getMovieById({ id: id })
+    getById({ id: id, type })
       .then((res) => {
         setMovieData(res.data);
         setLoading(false);
@@ -28,7 +28,7 @@ export default function MovieDetails() {
         setError(true);
         setLoading(false);
       });
-  }, [id]);
+  }, [id, type]);
 
   const navigate = useNavigate();
 
@@ -38,7 +38,7 @@ export default function MovieDetails() {
         <LoadingScreen />
       ) : (
         <>
-          <Title size="h1">{movieData?.title}</Title>
+          <Title size="h1">{movieData?.title || movieData?.name}</Title>
           {movieData?.adult && (
             <h2>
               <b>WARNING - THIS MOVIE IS RATED FOR ADULTS ONLY</b>

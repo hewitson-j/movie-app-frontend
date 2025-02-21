@@ -49,6 +49,7 @@ function TrendingPage() {
                   posterPath={movie.poster_path}
                   title={movie.title || movie.name || ""}
                   overview={movie.overview}
+                  type={type}
                 />
               );
             })}

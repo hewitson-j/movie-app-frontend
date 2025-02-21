@@ -11,12 +11,13 @@ export function getTrending({ type = "movie", page = 1 }: GetTrendingParams) {
   return axios.get(`${BASE_URL}/trending/${type}?timeframe=day&page=${page}`);
 }
 
-interface GetMovieByIdParams {
+interface GetByIdParams {
   id: string;
+  type: "movie" | "tv";
 }
 
-export function getMovieById({ id }: GetMovieByIdParams) {
-  return axios.get(`${BASE_URL}/search/${id}`);
+export function getById({ id, type }: GetByIdParams) {
+  return axios.get(`${BASE_URL}/search/${type}/${id}`);
 }
 
 interface SearchMovieByTitleParams {

@@ -11,7 +11,7 @@ export default function Router() {
       <Route path="/" element={<Home />} />
       <Route path="/trending" element={<Trending />} />
       <Route path="/search" element={<Search />} />
-      <Route path="/movies/:id" element={<MovieDetails />} />
+      <Route path="/:type/details/:id" element={<MovieDetails />} />
       <Route path="/loading" element={<LoadingScreen />} />
     </Routes>
   );
