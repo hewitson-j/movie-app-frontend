@@ -47,7 +47,7 @@ function TrendingPage() {
                   key={movie.id}
                   id={movie.id}
                   posterPath={movie.poster_path}
-                  title={movie.title}
+                  title={movie.title || movie.name || ""}
                   overview={movie.overview}
                 />
               );

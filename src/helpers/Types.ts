@@ -14,6 +14,7 @@ export type TrendingMovie = {
   video: boolean;
   vote_average: number;
   vote_count: number;
+  name?: string;
 };
 
 export type genre = {
