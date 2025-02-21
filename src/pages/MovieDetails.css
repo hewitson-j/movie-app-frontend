@@ -2,7 +2,7 @@
   text-align: center;
   min-width: 300px;
   max-width: 1200px;
-  margin: auto;
+  margin: 1rem auto;
 }
 .movie-details img {
   /* height: 30vh; */
@@ -13,4 +13,21 @@
 
 .movie-details h2 {
   font-style: italic;
+}
+
+.movie-extra-details {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.movie-details-buttons {
+  width: 400px;
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
 }

@@ -1,3 +1,4 @@
+import LoadingScreen from "../components/LoadingScreen";
 import MoviePoster from "../components/MoviePoster";
 import Title from "../components/Title";
 import HomeProvider, { useHomeProviderContext } from "../context/HomeProvider";
@@ -18,7 +19,7 @@ function HomePage() {
     <div className="home-page page">
       <Title>Welcome!</Title>
       <p>We're so excited to have you here. Feel free to check the website!</p>
-      {loading ? <>Loading...</> : <HomePageTrendingMovies />}
+      {loading ? <LoadingScreen /> : <HomePageTrendingMovies />}
       {error ? <>Error loading trending movies.</> : <></>}
     </div>
   );

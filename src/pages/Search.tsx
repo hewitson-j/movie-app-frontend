@@ -5,6 +5,7 @@ import SearchProvider, {
 } from "../context/SearchProvider";
 import MoviePoster from "../components/MoviePoster";
 import "./Search.css";
+import LoadingScreen from "../components/LoadingScreen";
 
 export default function Search() {
   return (
@@ -17,9 +18,8 @@ export default function Search() {
 function SearchPage() {
   const { data, loading, error, setSearchTerm } = useSearchProviderContext();
 
-  console.log(data);
-
   const [searchText, setSearchText] = useState("");
+  const [hasSearched, setHasSearched] = useState(false);
 
   return (
     <div className="search-page page">
@@ -28,15 +28,22 @@ function SearchPage() {
       <div className="search-box">
         <input
           type="text"
+          placeholder="Search term here"
           value={searchText}
           onChange={(e) => setSearchText(e.target.value)}
         />
-        <button disabled={loading} onClick={() => setSearchTerm(searchText)}>
+        <button
+          disabled={loading}
+          onClick={() => {
+            setSearchTerm(searchText);
+            if (!hasSearched) setHasSearched(true);
+          }}
+        >
           Search
         </button>
       </div>
       {loading ? (
-        <>Loading...</>
+        <LoadingScreen />
       ) : (
         <div className="search-results">
           {data && data?.length > 0 ? (
@@ -54,7 +61,11 @@ function SearchPage() {
               })}
             </div>
           ) : (
-            "Search results will appear here!"
+            <h2 className="search-results-placeholder">
+              {hasSearched
+                ? "Zero results found."
+                : "Search results will appear here!"}
+            </h2>
           )}
         </div>
       )}

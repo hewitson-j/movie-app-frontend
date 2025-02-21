@@ -1,5 +1,29 @@
+.search-page {
+  text-align: center;
+}
+
+.search-box {
+  width: 500px;
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.search-box input[type="text"] {
+  padding: 0.5rem;
+  border-radius: 10px;
+  font-size: 16pt;
+  border-color: gray;
+  width: 80%;
+}
+
 .search-results-body {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+}
+
+.search-results-placeholder {
+  margin: 2rem auto;
 }

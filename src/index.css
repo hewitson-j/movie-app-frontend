@@ -3,6 +3,21 @@ body {
   font-family: "Roboto", "Open Sans", "Inter", "Times New Roman", Times, serif;
 }
 
+button {
+  font-size: 14pt;
+  color: white;
+  background-color: #032541;
+  border: none;
+  border-radius: 20px;
+  padding: 0.5rem;
+  transition-duration: 0.2s;
+}
+
+button:hover {
+  background-color: #094576;
+  cursor: pointer;
+}
+
 .page {
   margin: 1rem;
 }
