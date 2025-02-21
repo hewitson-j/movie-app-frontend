@@ -1,0 +1,9 @@
+.home-page-trending-movies-body {
+  width: 80%;
+  min-width: 300px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  margin: auto;
+}

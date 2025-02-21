@@ -1,24 +1,25 @@
 import { createContext, ReactNode, useContext } from "react";
 import { useGetTrending } from "../helpers/hooks";
+import { TrendingMovie } from "../helpers/Types";
 
 interface HomeProviderProps {
   children: ReactNode;
 }
 
-interface HomeContextProps<TData> {
-  data: TData | null;
+interface HomeContextProps {
+  data: TrendingMovie[] | null;
   loading: boolean;
   error: boolean;
 }
 
-const HomeContext = createContext<HomeContextProps<unknown>>({
+const HomeContext = createContext<HomeContextProps>({
   data: null,
   loading: true,
   error: false,
 });
 
 export default function HomeProvider({ children }: HomeProviderProps) {
-  const { data, loading, error } = useGetTrending();
+  const { data, loading, error } = useGetTrending({ type: "movie" });
 
   return (
     <HomeContext.Provider value={{ data, loading, error }}>
@@ -27,6 +28,6 @@ export default function HomeProvider({ children }: HomeProviderProps) {
   );
 }
 
-export function useHomeProviderContext() {
+export const useHomeProviderContext = () => {
   return useContext(HomeContext);
-}
+};
