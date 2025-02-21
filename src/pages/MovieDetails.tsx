@@ -39,6 +39,11 @@ export default function MovieDetails() {
       ) : (
         <>
           <Title size="h1">{movieData?.title}</Title>
+          {movieData?.adult && (
+            <h2>
+              <b>WARNING - THIS MOVIE IS RATED FOR ADULTS ONLY</b>
+            </h2>
+          )}
           <img
             src={`https://image.tmdb.org/t/p/original/${movieData?.backdrop_path}`}
             alt={movieData?.title}

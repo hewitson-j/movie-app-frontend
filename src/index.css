@@ -18,6 +18,11 @@ button:hover {
   cursor: pointer;
 }
 
+button:disabled {
+  background-color: #455b6d;
+  cursor: not-allowed;
+}
+
 .page {
   margin: 1rem;
 }

@@ -12,3 +12,11 @@
 .trending-filter {
   text-align: center;
 }
+
+.trending-type-toggle {
+  display: flex;
+  flex-direction: row;
+  width: 200px;
+  margin: auto;
+  justify-content: space-between;
+}

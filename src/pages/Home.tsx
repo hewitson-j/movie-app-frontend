@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import LoadingScreen from "../components/LoadingScreen";
 import MoviePoster from "../components/MoviePoster";
 import Title from "../components/Title";
@@ -14,6 +15,7 @@ export default function Home() {
 
 function HomePage() {
   const { loading, error } = useHomeProviderContext();
+  const navigate = useNavigate();
 
   return (
     <div className="home-page page">
@@ -21,6 +23,9 @@ function HomePage() {
       <p>We're so excited to have you here. Feel free to check the website!</p>
       {loading ? <LoadingScreen /> : <HomePageTrendingMovies />}
       {error ? <>Error loading trending movies.</> : <></>}
+      <button onClick={() => navigate("/trending")}>
+        See what else is Trending
+      </button>
     </div>
   );
 }
