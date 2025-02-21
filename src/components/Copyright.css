@@ -1,0 +1,19 @@
+.copyright {
+  width: 75%;
+  margin: auto;
+  min-width: 300px;
+  text-align: center;
+}
+
+.copyright a {
+  color: black;
+}
+
+.copyright a:hover {
+  color: red;
+  cursor: pointer;
+}
+
+.copyright a:visited {
+  color: rebeccapurple;
+}
