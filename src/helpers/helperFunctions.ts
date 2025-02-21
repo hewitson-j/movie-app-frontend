@@ -17,3 +17,12 @@ interface GetMovieByIdParams {
 export function getMovieById({ id }: GetMovieByIdParams) {
   return axios.get(`${BASE_URL}/search/${id}`);
 }
+
+interface SearchMovieByTitleParams {
+  title: string;
+}
+
+export function searchMovieByTitle({ title }: SearchMovieByTitleParams) {
+  title = encodeURI(title);
+  return axios.get(`${BASE_URL}/search?title=${title}`);
+}
