@@ -1,11 +1,19 @@
 import axios from "axios";
 
-interface getTrendingProps {
+const BASE_URL = "https://movie-app-api-af87945d8ca3.herokuapp.com/movies";
+
+interface GetTrendingParams {
   type?: "movie" | "tv";
 }
 
-export async function getTrending({ type = "movie" }: getTrendingProps) {
-  return await axios.get(
-    `https://movie-app-api-af87945d8ca3.herokuapp.com/movies/trending/${type}?timeframe=day`
-  );
+export function getTrending({ type = "movie" }: GetTrendingParams) {
+  return axios.get(`${BASE_URL}/trending/${type}?timeframe=day`);
+}
+
+interface GetMovieByIdParams {
+  id: string;
+}
+
+export function getMovieById({ id }: GetMovieByIdParams) {
+  return axios.get(`${BASE_URL}/search/${id}`);
 }

@@ -33,6 +33,7 @@ function HomePageTrendingMovies() {
         return (
           <MoviePoster
             key={entry.id}
+            id={entry.id}
             posterPath={entry.poster_path}
             title={entry.title}
             overview={entry.overview}
