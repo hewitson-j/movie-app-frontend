@@ -6,6 +6,12 @@
   box-shadow: 1px 1px 1px 1px;
   padding: 1rem;
   margin: 1rem auto;
+  transition-duration: 0.2s;
+}
+
+.movie-poster:hover {
+  transform: scale(1.05);
+  cursor: pointer;
 }
 
 .movie-poster p {

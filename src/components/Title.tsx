@@ -1,7 +1,7 @@
 import "./Title.css";
 
 interface TitleProps {
-  children: string;
+  children?: string;
   size?: "h1" | "h2" | "h3" | "h4";
 }
 

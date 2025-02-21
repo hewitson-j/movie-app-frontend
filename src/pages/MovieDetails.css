@@ -1,0 +1,16 @@
+.movie-details {
+  text-align: center;
+  min-width: 300px;
+  max-width: 1200px;
+  margin: auto;
+}
+.movie-details img {
+  /* height: 30vh; */
+  max-width: 900px;
+  margin: auto;
+  overflow: hidden;
+}
+
+.movie-details h2 {
+  font-style: italic;
+}
