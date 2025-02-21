@@ -31,6 +31,12 @@ function SearchPage() {
           placeholder="Search term here"
           value={searchText}
           onChange={(e) => setSearchText(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" && !loading) {
+              setSearchTerm(searchText);
+              if (!hasSearched) setHasSearched(true);
+            }
+          }}
         />
         <button
           disabled={loading}
@@ -56,6 +62,7 @@ function SearchPage() {
                     posterPath={entry.poster_path}
                     title={entry.title}
                     overview={entry.overview}
+                    type="movie"
                   />
                 );
               })}
