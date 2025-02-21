@@ -3,15 +3,20 @@ import { getTrending, searchMovieByTitle } from "./helperFunctions";
 
 interface useGetTrendingParams {
   type?: "movie" | "tv";
+  page?: number;
 }
 
-export function useGetTrending({ type = "movie" }: useGetTrendingParams) {
+export function useGetTrending({
+  type = "movie",
+  page = 1,
+}: useGetTrendingParams) {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
   useEffect(() => {
-    getTrending({ type })
+    setLoading(true);
+    getTrending({ type, page })
       .then((res) => {
         setData(res.data.results);
         setLoading(false);
@@ -20,7 +25,7 @@ export function useGetTrending({ type = "movie" }: useGetTrendingParams) {
         setError(true);
         setLoading(false);
       });
-  }, [type]);
+  }, [page, type]);
 
   return { data, loading, error };
 }

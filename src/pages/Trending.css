@@ -1,0 +1,14 @@
+.trending-posters {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.trending-see-more {
+  text-align: center;
+}
+
+.trending-filter {
+  text-align: center;
+}

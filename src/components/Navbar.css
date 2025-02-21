@@ -1,6 +1,9 @@
 .navbar {
   color: white;
   background-color: #032541;
+  position: sticky;
+  top: 0;
+  z-index: 5;
 }
 
 .navbar ul {
