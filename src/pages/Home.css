@@ -4,7 +4,7 @@
 
 .home-page-trending-movies-body {
   width: 80%;
-  min-width: 300px;
+  min-width: 250px;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
@@ -15,6 +15,6 @@
 .home-page-title {
   width: 50%;
   max-width: 800px;
-  min-width: 300px;
+  min-width: 250px;
   margin: auto;
 }

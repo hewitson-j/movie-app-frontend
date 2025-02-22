@@ -10,6 +10,17 @@
   justify-content: space-between;
 }
 
+@media screen and (max-width: 500px) {
+  .search-box {
+    align-items: center;
+    flex-direction: column;
+    width: 90%;
+  }
+  .search-box input[type="text"] {
+    margin-bottom: 1rem;
+  }
+}
+
 .search-box input[type="text"] {
   padding: 0.5rem;
   border-radius: 10px;
