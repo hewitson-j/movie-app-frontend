@@ -94,7 +94,7 @@ function SearchPage() {
                       posterPath={entry.poster_path}
                       title={entry.title}
                       overview={entry.overview}
-                      type="movie"
+                      type={type}
                     />
                   );
                 })}
