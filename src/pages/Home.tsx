@@ -50,12 +50,15 @@ function HomePage() {
 function HomePageTrendingMovies() {
   const { data } = useHomeProviderContext();
 
+  let count = 0;
+
   return (
     <div className="home-page-trending-movies-body">
       {data?.slice(0, 6).map((entry) => {
+        count++;
         return (
           <MoviePoster
-            key={entry.id}
+            key={`${entry.id}-${count}`}
             id={entry.id}
             posterPath={entry.poster_path}
             title={entry.title}

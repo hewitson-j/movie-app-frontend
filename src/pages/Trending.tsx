@@ -20,6 +20,8 @@ function TrendingPage() {
   const { page, setPage, type, setType } = useTrendingStateContext();
   const { trendingMovies, loading, error } = useTrendingContext();
 
+  let count = 0;
+
   return (
     <div className="trending-page page">
       <Title size="h1">What's Trending</Title>
@@ -43,9 +45,10 @@ function TrendingPage() {
           </div>
           <div className="trending-posters">
             {trendingMovies?.map((movie) => {
+              count++;
               return (
                 <MoviePoster
-                  key={movie.id}
+                  key={`${movie.id}-${count}`}
                   id={movie.id}
                   posterPath={movie.poster_path}
                   title={movie.title || movie.name || ""}

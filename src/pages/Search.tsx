@@ -32,6 +32,8 @@ function SearchPage() {
   const [searchText, setSearchText] = useState("");
   const [hasSearched, setHasSearched] = useState(false);
 
+  let count = 0;
+
   return (
     <div className="search-page page">
       <Title size="h2">Search</Title>
@@ -87,9 +89,10 @@ function SearchPage() {
             <>
               <div className="search-results-body">
                 {data.map((entry) => {
+                  count++;
                   return (
                     <MoviePoster
-                      key={entry.id}
+                      key={`${entry.id}-${count}`}
                       id={entry.id}
                       posterPath={entry.poster_path}
                       title={entry.title}
