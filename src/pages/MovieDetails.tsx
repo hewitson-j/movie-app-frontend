@@ -34,58 +34,77 @@ export default function MovieDetails() {
   const navigate = useNavigate();
 
   return (
-    <div className="movie-details">
+    <>
       {loading ? (
         <LoadingScreen />
       ) : (
-        <>
-          <Title size="h1">{movieData?.title || movieData?.name}</Title>
-          {movieData?.adult && (
-            <h2>
-              <b>WARNING - THIS MOVIE IS RATED FOR ADULTS ONLY</b>
-            </h2>
-          )}
-          <img
-            src={`https://image.tmdb.org/t/p/original/${movieData?.backdrop_path}`}
-            alt={movieData?.title}
-          />
-          <h2>{movieData?.tagline}</h2>
-          <p>{movieData?.overview}</p>
-          <div className="movie-extra-details">
-            <div className="movie-details-rating">
-              <h3>Rating:</h3>
-              <p>{Math.floor(movieData?.vote_average || 0) * 10 + "%"}</p>
+        <div
+          className="movie-details"
+          style={{
+            backgroundImage: movieData?.backdrop_path
+              ? `url(https://image.tmdb.org/t/p/original/${movieData.backdrop_path})`
+              : `url(Default.jpg)`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        >
+          <div className="movie-details-text">
+            <div>
+              <Title size="h1">{movieData?.title || movieData?.name}</Title>
+              {movieData?.adult && (
+                <h2>
+                  <b>WARNING - THIS MOVIE IS RATED FOR ADULTS ONLY</b>
+                </h2>
+              )}
+              <h2>{movieData?.tagline}</h2>
+            </div>
+            <img
+              src={
+                movieData?.poster_path
+                  ? `https://image.tmdb.org/t/p/original/${movieData?.poster_path}`
+                  : "Default.jpg"
+              }
+              alt={movieData?.title}
+            />
+            <div>
+              <p>{movieData?.overview}</p>
+              <div className="movie-extra-details">
+                <div className="movie-details-rating">
+                  <h3>Rating:</h3>
+                  <p>{Math.floor(movieData?.vote_average || 0) * 10 + "%"}</p>
+                </div>
+              </div>
+              <div className="movie-details-buttons">
+                <button onClick={() => navigate(-1)}>Go Back</button>
+                {movieData?.homepage && (
+                  <button
+                    onClick={() => {
+                      window.open(
+                        movieData.homepage,
+                        "_blank",
+                        "noopener,noreferrer"
+                      );
+                    }}
+                  >
+                    Click Here to go to Website
+                  </button>
+                )}
+              </div>
             </div>
           </div>
-          <div className="movie-details-buttons">
-            <button onClick={() => navigate(-1)}>Go Back</button>
-            {movieData?.homepage && (
-              <button
-                onClick={() => {
-                  window.open(
-                    movieData.homepage,
-                    "_blank",
-                    "noopener,noreferrer"
-                  );
-                }}
-              >
-                Click Here to go to Website
-              </button>
-            )}
-          </div>
-        </>
+          {error ? (
+            <ErrorScreen
+              customTitle={`Error loading ${
+                type === "movie" ? "Movie" : "TV Show"
+              }`}
+              customMessage="We're sorry! It looks like the material you're looking for is unavailable or there was an error displaying the information. Click the button below to go back."
+              showButton
+            />
+          ) : (
+            <></>
+          )}
+        </div>
       )}
-      {error ? (
-        <ErrorScreen
-          customTitle={`Error loading ${
-            type === "movie" ? "Movie" : "TV Show"
-          }`}
-          customMessage="We're sorry! It looks like the material you're looking for is unavailable or there was an error displaying the information. Click the button below to go back."
-          showButton
-        />
-      ) : (
-        <></>
-      )}
-    </div>
+    </>
   );
 }
