@@ -6,9 +6,11 @@ import { Movie, Show } from "../helpers/Types";
 import "./MovieDetails.css";
 import LoadingScreen from "../components/LoadingScreen";
 import ErrorScreen from "../components/ErrorScreen";
+import { useGlobalProviderContext } from "../context/GlobalProvider";
 
 export default function MovieDetails() {
   const { type, id } = useParams();
+  const { backendUrl } = useGlobalProviderContext();
 
   const [movieData, setMovieData] = useState<Movie | Show>();
   const [loading, setLoading] = useState(true);
@@ -20,7 +22,7 @@ export default function MovieDetails() {
       return;
     }
 
-    getById({ id: id, type })
+    getById({ id, type, baseUrl: backendUrl })
       .then((res) => {
         setMovieData(res.data);
         setLoading(false);

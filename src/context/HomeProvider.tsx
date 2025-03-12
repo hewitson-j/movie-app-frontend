@@ -1,6 +1,7 @@
 import { createContext, ReactNode, useContext } from "react";
 import { useGetTrending } from "../helpers/hooks";
 import { TrendingMovie } from "../helpers/Types";
+import { useGlobalProviderContext } from "./GlobalProvider";
 
 interface HomeProviderProps {
   children: ReactNode;
@@ -19,7 +20,11 @@ const HomeContext = createContext<HomeContextProps>({
 });
 
 export default function HomeProvider({ children }: HomeProviderProps) {
-  const { data, loading, error } = useGetTrending({ type: "movie" });
+  const { backendUrl } = useGlobalProviderContext();
+  const { data, loading, error } = useGetTrending({
+    type: "movie",
+    baseUrl: backendUrl,
+  });
 
   return (
     <HomeContext.Provider value={{ data, loading, error }}>
