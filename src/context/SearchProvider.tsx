@@ -8,6 +8,7 @@ import {
 } from "react";
 import { SearchMovie } from "../helpers/Types";
 import { useSearchByTitle } from "../helpers/hooks";
+import { useGlobalProviderContext } from "./GlobalProvider";
 
 interface SearchProviderProps {
   children: ReactNode;
@@ -38,6 +39,7 @@ const SearchContext = createContext<SearchContextProps>({
 });
 
 export default function SearchProvider({ children }: SearchProviderProps) {
+  const { backendUrl } = useGlobalProviderContext();
   const [searchTerm, setSearchTerm] = useState("");
   const [type, setType] = useState<"movie" | "tv">("movie");
 
@@ -47,6 +49,7 @@ export default function SearchProvider({ children }: SearchProviderProps) {
     title: searchTerm,
     type: type,
     page: page,
+    baseUrl: backendUrl,
   });
 
   const setSafePage = (newPage: number) => {

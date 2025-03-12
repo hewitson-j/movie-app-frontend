@@ -4,11 +4,13 @@ import { getTrending, searchByTitle } from "./helperFunctions";
 interface useGetTrendingParams {
   type?: "movie" | "tv";
   page?: number;
+  baseUrl: string;
 }
 
 export function useGetTrending({
   type = "movie",
   page = 1,
+  baseUrl,
 }: useGetTrendingParams) {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -16,7 +18,7 @@ export function useGetTrending({
 
   useEffect(() => {
     setLoading(true);
-    getTrending({ type, page })
+    getTrending({ type, page, baseUrl })
       .then((res) => {
         setData(res.data.results);
         setLoading(false);
@@ -25,7 +27,7 @@ export function useGetTrending({
         setError(true);
         setLoading(false);
       });
-  }, [page, type]);
+  }, [baseUrl, page, type]);
 
   return { data, loading, error };
 }
@@ -34,11 +36,13 @@ interface useSearchByTitleParams {
   title: string;
   type: "movie" | "tv";
   page: number;
+  baseUrl: string;
 }
 export function useSearchByTitle({
   title,
   type,
   page,
+  baseUrl,
 }: useSearchByTitleParams) {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -49,7 +53,7 @@ export function useSearchByTitle({
   useEffect(() => {
     if (title.trim() !== "") {
       setLoading(true);
-      searchByTitle({ title, type, page })
+      searchByTitle({ title, type, page, baseUrl })
         .then((res) => {
           setData(res.data.results);
           setLoading(false);
@@ -60,7 +64,7 @@ export function useSearchByTitle({
           setLoading(false);
         });
     }
-  }, [page, title, type]);
+  }, [baseUrl, page, title, type]);
 
   return { data, loading, error, totalResults };
 }

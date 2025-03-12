@@ -9,6 +9,7 @@ import {
 } from "react";
 import { TrendingMovie } from "../helpers/Types";
 import { useGetTrending } from "../helpers/hooks";
+import { useGlobalProviderContext } from "./GlobalProvider";
 
 interface TrendingProviderProps {
   children: ReactNode;
@@ -41,11 +42,16 @@ const TrendingStateContext = createContext<TrendingStateContextProps>({
 });
 
 export default function TrendingProvider({ children }: TrendingProviderProps) {
+  const { backendUrl } = useGlobalProviderContext();
   const [trendingMovies, setTrendingMovies] = useState<TrendingMovie[]>([]);
   const [page, setPage] = useState(1);
   const [type, setType] = useState<"movie" | "tv">("movie");
 
-  const { data, loading, error } = useGetTrending({ type, page });
+  const { data, loading, error } = useGetTrending({
+    type,
+    page,
+    baseUrl: backendUrl,
+  });
 
   useEffect(() => {
     if (data && data.length > 0) {
