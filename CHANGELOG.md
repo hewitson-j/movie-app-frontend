@@ -1,5 +1,8 @@
 # Movie App CHANGELOG
 
+## 3/12/25 - 1.0.4
+Added new backend URL, global provider to manage global context
+
 ## 2/23/25 - 1.0.3
 Changed movie details layout/background image, Fixed non-unique keys
 
