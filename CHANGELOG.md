@@ -1,5 +1,8 @@
 # Movie App CHANGELOG
 
+## 3/14/25 - 1.1.0
+Added add movie page for new API
+
 ## 3/12/25 - 1.0.4
 Added new backend URL, global provider to manage global context
 
