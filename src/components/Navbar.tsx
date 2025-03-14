@@ -13,6 +13,7 @@ export default function Navbar() {
         <li onClick={() => navigate("/")}>Home</li>
         <li onClick={() => navigate("/trending")}>Trending</li>
         <li onClick={() => navigate("/search")}>Search</li>
+        <li onClick={() => navigate("/add-movie")}>Add Movie</li>
         <li onClick={() => setIsUsingNewBackend(!isUsingNewBackend)}>{`${
           isUsingNewBackend ? "Disable" : "Enable"
         } New API`}</li>

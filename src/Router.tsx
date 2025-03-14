@@ -5,6 +5,7 @@ import Search from "./pages/Search";
 import MovieDetails from "./pages/MovieDetails";
 import LoadingScreen from "./components/LoadingScreen";
 import ErrorScreen from "./components/ErrorScreen";
+import AddMovie from "./pages/AddMovie";
 
 export default function Router() {
   return (
@@ -12,6 +13,7 @@ export default function Router() {
       <Route path="/" element={<Home />} />
       <Route path="/trending" element={<Trending />} />
       <Route path="/search" element={<Search />} />
+      <Route path="/add-movie" element={<AddMovie />} />
       <Route path="/:type/details/:id" element={<MovieDetails />} />
       <Route path="/loading" element={<LoadingScreen />} />
       <Route path="/error" element={<ErrorScreen />} />

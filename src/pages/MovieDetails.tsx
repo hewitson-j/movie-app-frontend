@@ -31,7 +31,7 @@ export default function MovieDetails() {
         setError(true);
         setLoading(false);
       });
-  }, [id, type]);
+  }, [backendUrl, id, type]);
 
   const navigate = useNavigate();
 

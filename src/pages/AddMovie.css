@@ -1,0 +1,30 @@
+.add-movie {
+  text-align: center;
+}
+
+.add-movie > form > div {
+  width: 300px;
+  margin: 1rem auto;
+}
+
+.add-movie > form > div > label {
+  display: block;
+  font-weight: bold;
+  font-size: 14pt;
+}
+
+.add-movie > form > div > input {
+  margin-top: 0.5rem;
+  font-size: 16pt;
+  padding: 0.5rem;
+  border-radius: 10px;
+  border-color: black;
+  border-radius: 25px;
+}
+
+.form-button-toggle {
+  width: 300px;
+  margin: auto;
+  display: flex;
+  justify-content: space-evenly;
+}
